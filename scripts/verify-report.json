@@ -1,7 +1,7 @@
 {
- "fecha": "2026-09-17T12:32:54.738Z",
- "base": "https://alvarotaiagu.github.io/asesoria-cervantes-carballo-web/",
- "total": 43,
+ "fecha": "2026-09-17T14:48:56.551Z",
+ "base": "http://127.0.0.1:8971/",
+ "total": 45,
  "fallos": 0,
  "pruebas": [
   {
@@ -242,7 +242,7 @@
   {
    "prueba": "sin JS: se lee el contenido (horario, teléfono, servicios)",
    "ok": true,
-   "detalle": 5037
+   "detalle": 5403
   },
   {
    "prueba": "sin CDN: el wordmark se ve relleno y no hay animación",
@@ -252,7 +252,7 @@
     "tinta": 1,
     "noticias": 4,
     "contador": "39",
-    "estrellas": 10
+    "estrellas": 30
    }
   },
   {
@@ -263,7 +263,7 @@
     "tinta": 1,
     "noticias": 4,
     "contador": "39",
-    "estrellas": 10
+    "estrellas": 30
    }
   },
   {
@@ -372,15 +372,27 @@
     "[FOTO DE EQUIPO PENDIENTE]",
     "[NOMBRES Y CARGOS PENDIENTES]",
     "[Nº DE PERSONAS PENDIENTE]",
-    "[TEXTO DE RESEÑA PENDIENTE]",
-    "[NOMBRE PENDIENTE]",
-    "[TEXTO DE RESEÑA PENDIENTE]",
-    "[NOMBRE PENDIENTE]",
-    "[TEXTO DE RESEÑA PENDIENTE]",
-    "[NOMBRE PENDIENTE]",
-    "[TEXTO DE RESEÑA PENDIENTE]",
-    "[NOMBRE PENDIENTE]",
     "[ROL EN KIT DIGITAL PENDIENTE: agente digitalizador o beneficiario]"
+   ]
+  },
+  {
+   "prueba": "reseñas: las cuatro reales, con sus cinco estrellas",
+   "ok": true,
+   "detalle": [
+    "Ca D. (5★)",
+    "Estefanía R. (5★)",
+    "Ana G. (5★)",
+    "Jesús Manuel R. (5★)"
+   ]
+  },
+  {
+   "prueba": "reseñas: los apellidos van abreviados, no completos",
+   "ok": true,
+   "detalle": [
+    "Ca D.",
+    "Estefanía R.",
+    "Ana G.",
+    "Jesús Manuel R."
    ]
   }
  ]

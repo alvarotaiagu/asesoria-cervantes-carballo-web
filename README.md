@@ -55,7 +55,6 @@ para que se vea de un vistazo qué queda. Nada de esto se ha inventado.
 |---|---|---|
 | **Año de fundación** | hero, bajo el subtítulo | Ver más abajo: es el único dato contradictorio de su web |
 | Foto del equipo, nombres, cargos y nº de personas | Prólogo, bloque «El equipo» | Enviar foto y nombres; sustituir el marco de puntos |
-| Textos y nombres de 4 reseñas | sección Reseñas | La nota (4,6) y el número (39) **sí** son reales |
 | Rol en Kit Digital | pie | ¿Agente digitalizador o beneficiario? Su web no lo dice |
 | Confirmar el enlace de «Acceso clientes» | hero, sección Clientes y pie | Ver más abajo |
 | Redes sociales | — | Su web actual **no enlaza ninguna**. No se han puesto |
@@ -131,12 +130,29 @@ Tomados de asesoriacervantes.com y de su ficha de Google:
 - **Dirección:** Gran Vía, 23-25, Piso 1º · 15100 Carballo, A Coruña
 - **Teléfono:** 981 70 27 55 · **Correo:** info@asesoriacervantes.com
 - **Valoración:** 4,6 ★ con 39 reseñas en Google
+- **Cuatro reseñas** de su ficha de Google, transcritas literalmente de las capturas
+  que envió el cliente. **Los apellidos van abreviados** («Estefanía R.», «Ana G.»,
+  «Jesús Manuel R.», «Ca D.»). Las erratas del original se han respetado porque son
+  citas, no texto nuestro; solo se ha separado un punto pegado
+  («asesores.con» → «asesores. Con»)
 - **Horario**, las dos temporadas, tal y como figura en su página de contacto
 - **Servicios**, agrupados en cuatro áreas a partir de su página de servicios
 - **Textos propios**, adaptados (no copiados literalmente)
 - **Kit Digital:** se muestra el logotipo del programa sin afirmar nada más que lo que
   ellos dicen
 - **Accountex España 2024:** citado como noticia suya
+
+### Dos cosas que dicen las reseñas y no están en la web
+
+Al transcribirlas aparecieron dos servicios que **su web actual no menciona** y que por
+eso **no se han puesto** en la página:
+
+- *«además de poder contratar un **seguro de coche** muy asequible»*
+- *«Inmejorable equipo de asesores. Con **abogados** y gestores especializados»*
+
+Si también hacen seguros o tienen abogados en plantilla, merece la pena decirlo: hoy la
+web solo habla de fiscal, contable, laboral y mercantil. Habría que confirmarlo antes de
+añadir nada.
 
 ---
 

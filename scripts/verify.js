@@ -389,6 +389,19 @@ async function recorrer(p, paso = 500, espera = 130) {
       !html.includes('<!--WORDMARK-->') && !html.includes('<!--C-GLIFO-->'));
     const pendientes = (txt.match(/\[[A-ZÑÁÉÍÓÚº][^\]]*\]/g) || []);
     ok('los huecos sin dato están marcados a la vista', pendientes.length >= 3, pendientes);
+
+    /* reseñas: son las cuatro reales de Google y ningún apellido va entero */
+    const resenas = await p.evaluate(() => [...document.querySelectorAll('.resenas li')].map(li => ({
+      cita: li.querySelector('blockquote p').textContent.trim(),
+      firma: li.querySelector('cite').firstChild.textContent.trim(),
+      estrellas: li.querySelectorAll('.estrellas .relleno').length
+    })));
+    ok('reseñas: las cuatro reales, con sus cinco estrellas',
+      resenas.length === 4 &&
+      resenas.every(r => r.estrellas === 5 && r.cita.length > 40 && !r.cita.includes('PENDIENTE')),
+      resenas.map(r => r.firma + ' (' + r.estrellas + '★)'));
+    ok('reseñas: los apellidos van abreviados, no completos',
+      resenas.every(r => /\s[A-ZÑ]\.$/.test(r.firma)), resenas.map(r => r.firma));
     await p.context().close();
   }
 

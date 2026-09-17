@@ -468,9 +468,24 @@ html.has-motion .cap-num path { stroke-dasharray: 1 1.04; stroke-dashoffset: 1; 
 }
 .resenas li {
   border-top: 1px solid rgba(34, 51, 43, 0.18); padding-top: 1.2rem;
+  display: flex; flex-direction: column;
 }
-.resenas blockquote { margin: 0 0 0.9rem; }
-.resenas cite { font-family: var(--sans); font-style: normal; }
+.resenas .estrellas { margin-bottom: 0.7rem; }
+.resenas .estrellas svg { width: 0.85rem; height: 0.85rem; }
+.resenas blockquote { margin: 0 0 1rem; }
+.resenas blockquote p {
+  margin: 0; font-size: 1.02rem; line-height: 1.6;
+  color: var(--tinta); text-wrap: pretty;
+}
+.resenas cite {
+  margin-top: auto;
+  font-family: var(--sans); font-style: normal; font-size: 0.88rem;
+  font-weight: 500; color: var(--tinta);
+}
+.resena-fuente {
+  display: block; font-weight: 400; font-size: 0.76rem;
+  letter-spacing: 0.06em; color: var(--tinta-60); margin-top: 0.15rem;
+}
 
 /* ---------- Contacto ------------------------------------------------------- */
 .contacto-caja {
