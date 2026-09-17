@@ -1,6 +1,6 @@
 {
- "fecha": "2026-09-17T12:26:46.395Z",
- "base": "http://127.0.0.1:8971/",
+ "fecha": "2026-09-17T12:32:54.738Z",
+ "base": "https://alvarotaiagu.github.io/asesoria-cervantes-carballo-web/",
  "total": 43,
  "fallos": 0,
  "pruebas": [
@@ -28,8 +28,8 @@
    "prueba": "wordmark: se está escribiendo (unos trazos hechos, otros no)",
    "ok": true,
    "detalle": {
-    "empezados": 6,
-    "sinEmpezar": 9,
+    "empezados": 7,
+    "sinEmpezar": 8,
     "tinta": 0
    }
   },
