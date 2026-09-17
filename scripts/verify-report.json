@@ -1,6 +1,6 @@
 {
- "fecha": "2026-09-17T14:48:56.551Z",
- "base": "http://127.0.0.1:8971/",
+ "fecha": "2026-09-17T21:44:56.184Z",
+ "base": "http://127.0.0.1:8802/",
  "total": 45,
  "fallos": 0,
  "pruebas": [
@@ -28,8 +28,8 @@
    "prueba": "wordmark: se está escribiendo (unos trazos hechos, otros no)",
    "ok": true,
    "detalle": {
-    "empezados": 7,
-    "sinEmpezar": 8,
+    "empezados": 11,
+    "sinEmpezar": 4,
     "tinta": 0
    }
   },
@@ -273,7 +273,7 @@
     "scrollH": 400,
     "clientH": 400,
     "wm": 360,
-    "tinta": 1
+    "tinta": 0.9868
    }
   },
   {
@@ -283,7 +283,7 @@
     "scrollH": 400,
     "clientH": 400,
     "wm": 360,
-    "tinta": 1
+    "tinta": 0.9868
    }
   },
   {
@@ -301,7 +301,7 @@
     "scrollH": 390,
     "clientH": 390,
     "wm": 350,
-    "tinta": 1
+    "tinta": 0.9819
    }
   },
   {
@@ -311,7 +311,7 @@
     "scrollH": 390,
     "clientH": 390,
     "wm": 350,
-    "tinta": 1
+    "tinta": 0.9819
    }
   },
   {
@@ -329,7 +329,7 @@
     "scrollH": 820,
     "clientH": 820,
     "wm": 704,
-    "tinta": 1
+    "tinta": 0.9816
    }
   },
   {
@@ -339,7 +339,7 @@
     "scrollH": 820,
     "clientH": 820,
     "wm": 704,
-    "tinta": 1
+    "tinta": 0.9816
    }
   },
   {

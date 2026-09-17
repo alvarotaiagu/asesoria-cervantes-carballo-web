@@ -243,6 +243,81 @@
     });
   });
 
+
+  /* ======================================================================
+     Cortina de entrada (preloader)
+     ----------------------------------------------------------------------
+     Gesto propio: la portada del tomo. El filete se dibuja, el nombre sube
+     desde una máscara y la hoja se PASA girando sobre el lomo izquierdo,
+     con la sombra del canto encendiéndose a la vez.
+
+     Dos momentos distintos a propósito:
+       · alAbrirse(fn) → cuando la hoja EMPIEZA a girar, para que la pluma
+         del hero ya esté escribiendo cuando asoma la página.
+       · retirar()     → al terminar: quita el nodo, devuelve el scroll y
+         refresca ScrollTrigger, que midió con overflow:hidden.
+     Va ANTES del `if (!motion) return` de abajo: si no, sin GSAP o con
+     movimiento reducido la cortina se quedaría puesta tapando el sitio.
+     ====================================================================== */
+  var cortina = (function initCortina() {
+    var el = $("[data-cortina]");
+    var espera = [];
+    var abierta = false;
+    var fuera = false;
+
+    function abrir() {
+      if (abierta) return;
+      abierta = true;
+      espera.splice(0).forEach(function (fn) { try { fn(); } catch (e) {} });
+    }
+    function retirar() {
+      abrir();
+      if (fuera) return;
+      fuera = true;
+      if (el) el.hidden = true;
+      html.classList.remove("cortina-puesta");
+      if (lenis) lenis.start();
+      if (gsapListo) ScrollTrigger.refresh();
+    }
+
+    var api = { alAbrirse: function (fn) { return abierta ? fn() : espera.push(fn); } };
+    if (!el || !motion) { retirar(); return api; }
+
+    html.classList.add("cortina-puesta");
+
+    var hoja = $(".cortina-hoja", el);
+    var lineas = $$(".cortina-marco-l", el);
+    var tomo = $(".cortina-tomo", el);
+    var marca = $(".cortina-marca span", el);
+    var filete = $(".cortina-filete", el);
+    var pie = $(".cortina-pie", el);
+    var PASA = 1.4;
+
+    var tl = gsap.timeline({ onComplete: retirar });
+    if (lineas.length) tl.to(lineas, { strokeDashoffset: 0, duration: 0.5, stagger: 0.13, ease: "power2.inOut" }, 0);
+    if (tomo) tl.to(tomo, { opacity: 1, duration: 0.6, ease: "power2.out" }, 0.35);
+    /* el estado inicial es un translateY(112%) de CSS y GSAP lo lee del
+       matrix como p\u00edxeles, no como yPercent: hay que poner las dos a cero
+       o el nombre no sale nunca de su m\u00e1scara. */
+    if (marca) tl.to(marca, { y: 0, yPercent: 0, duration: 0.95, ease: "expo.out" }, 0.5);
+    if (filete) tl.to(filete, { scaleX: 1, duration: 0.7, ease: "power2.inOut" }, 0.85);
+    if (pie) tl.to(pie, { opacity: 1, letterSpacing: "0.34em", duration: 0.8, ease: "power2.out" }, 0.9);
+
+    tl.add(abrir, PASA);
+    /* El giro va en POSITIVO: con transform-origin a la izquierda, un
+       rotationY negativo trae el canto derecho hacia la cámara y la hoja
+       tapa MAS, no menos. En positivo se va hacia atrás, se escorza y
+       destapa la página desde la derecha, que es como se pasa una hoja. */
+    if (hoja) {
+      tl.to(hoja, { rotationY: 96, duration: 1.15, ease: "expo.inOut" }, PASA);
+      var canto = $(".cortina-canto", el);
+      if (canto) tl.to(canto, { opacity: 1, duration: 0.6, ease: "power2.out" }, PASA);
+    }
+
+    setTimeout(retirar, 5200);
+    return api;
+  })();
+
   /* ======================================================================
      2 · Sin movimiento: valores finales y se acabó
      ====================================================================== */
@@ -309,7 +384,7 @@
       try { return p.getTotalLength() || 1; } catch (e) { return 1; }
     });
 
-    var tl = gsap.timeline({ delay: 0.25 });
+    var tl = gsap.timeline({ delay: 0.25, paused: true });
     escribir(tl, paths, largos, 1.95, 0, 0.9);
 
     /* al terminar el trazo, la tinta entra sola de izquierda a derecha */
@@ -323,6 +398,10 @@
       { opacity: 0, y: 18 },
       { opacity: 1, y: 0, duration: 0.9, stagger: 0.09, ease: "power3.out" }, "<0.1");
     tl.fromTo(".hero-scroll", { opacity: 0 }, { opacity: 1, duration: 0.8 }, ">-0.4");
+
+    /* la pluma no empieza a escribir hasta que se pasa la hoja: lo primero
+       que se ve de la página ya está en movimiento */
+    cortina.alAbrirse(function () { tl.play(); });
   })();
 
   /* --- Titulares: la pluma escribe la primera palabra -------------------- */

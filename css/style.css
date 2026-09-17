@@ -124,6 +124,55 @@ a { color: inherit; }
 .btn-linea { background: transparent; color: var(--tinta); border-color: rgba(34, 51, 43, 0.28); }
 .btn-linea:hover { border-color: var(--tinta); background: rgba(34, 51, 43, 0.05); }
 
+/* ---------- Cortina de entrada (preloader) ----------
+   La portada del tomo: el filete se dibuja, el nombre sube desde una
+   máscara y luego la hoja se PASA (rotateY sobre el lomo izquierdo).
+   Ningún otro sitio de la carpeta sale así, y aquí encaja porque la
+   página entera está montada por capítulos.
+   Los estados "vacíos" viven bajo html.has-motion: sin GSAP la cortina se
+   retira al instante y nadie ve una portada a medias.
+   Ojo: .cortina usa display:grid, así que [hidden] necesita su regla. */
+.cortina { position: fixed; inset: 0; z-index: 400; display: grid; perspective: 1600px; }
+.cortina[hidden] { display: none; }
+html.cortina-puesta { overflow: hidden; }
+
+.cortina-hoja {
+  position: absolute; inset: 0;
+  display: grid; place-items: center;
+  background: linear-gradient(105deg, #1A2820 0%, var(--tinta) 38%, #2B4036 100%);
+  transform-origin: left center;
+  backface-visibility: hidden;
+  will-change: transform;
+}
+/* la sombra del canto: se enciende mientras la hoja gira, como el pliegue
+   de un papel grueso al levantarlo. El degradado va hacia el lomo (izquierda),
+   que es por donde se dobla. */
+.cortina-canto {
+  position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(90deg, rgba(0,0,0,.62) 0%, rgba(0,0,0,.18) 34%, rgba(0,0,0,0) 62%);
+  opacity: 0;
+}
+
+.cortina-marco { position: absolute; width: min(74vw, 30rem); height: min(46vh, 20rem); fill: none; stroke: var(--salvia); stroke-width: 1; vector-effect: non-scaling-stroke; opacity: .65; }
+.cortina-centro { position: relative; display: grid; justify-items: center; gap: .55rem; text-align: center; padding: 0 2rem; }
+.cortina-tomo { font-family: var(--sans); font-size: .72rem; font-weight: 600; letter-spacing: .38em; text-transform: uppercase; color: var(--salvia); }
+.cortina-marca { overflow: hidden; padding-bottom: .1em; }
+.cortina-marca span {
+  display: block; font-family: var(--serif); font-weight: 400;
+  font-size: clamp(2.6rem, 9vw, 4.6rem); line-height: 1; color: var(--papel);
+}
+.cortina-filete { display: block; width: min(30vw, 190px); height: 1px; background: var(--arena); transform-origin: 50% 50%; }
+.cortina-pie { font-family: var(--sans); font-size: .68rem; font-weight: 600; letter-spacing: .34em; text-transform: uppercase; color: rgba(244,240,232,.6); }
+
+html.has-motion .cortina-marco-l { stroke-dasharray: 1; stroke-dashoffset: 1; }
+html.has-motion .cortina-marca span { transform: translateY(112%); }
+html.has-motion .cortina-tomo { opacity: 0; }
+html.has-motion .cortina-filete { transform: scaleX(0); }
+html.has-motion .cortina-pie { opacity: 0; letter-spacing: .62em; }
+
+/* con movimiento reducido no debe verse ni un fotograma */
+@media (prefers-reduced-motion: reduce) { .cortina { display: none; } }
+
 /* ---------- Cabecera ------------------------------------------------------- */
 .cabecera {
   position: fixed; inset: 0 0 auto 0; z-index: 90;

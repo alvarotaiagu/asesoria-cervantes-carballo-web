@@ -81,7 +81,13 @@ async function recorrer(p, paso = 500, espera = 130) {
     ok('wordmark: viewBox sin estirar (preserveAspectRatio por defecto)',
       !wm.par || wm.par === 'xMidYMid meet', wm.par);
 
-    /* a mitad de la escritura debe haber trazo a medias y tinta aún oculta */
+    /* a mitad de la escritura debe haber trazo a medias y tinta aún oculta.
+       La pluma no arranca hasta que la cortina de entrada empieza a pasarse,
+       así que primero hay que esperar a que la cortina se vaya. */
+    await p.waitForFunction(() => {
+      const c = document.querySelector("[data-cortina]");
+      return !c || c.hidden;
+    }, null, { timeout: 8000 });
     await p.waitForTimeout(700);
     const medio = await p.evaluate(() => {
       const paths = [...document.querySelectorAll('.wm-pluma path')];

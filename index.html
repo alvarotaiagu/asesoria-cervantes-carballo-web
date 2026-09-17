@@ -62,9 +62,33 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
+<!-- Sin JavaScript no hay quien pase la hoja: mejor no enseñarla. -->
+<noscript><style>.cortina { display: none !important; }</style></noscript>
 </head>
 <body>
 <a class="saltar" href="#prologo">Saltar al contenido</a>
+
+<!-- Cortina de entrada: la portada del libro, que se pasa como una hoja.
+     Se retira SIEMPRE desde js/main.js; el script de abajo es la red de
+     seguridad por si main.js no llega a cargarse. -->
+<div class="cortina" data-cortina aria-hidden="true">
+  <div class="cortina-hoja">
+    <span class="cortina-canto" aria-hidden="true"></span>
+    <svg class="cortina-marco" viewBox="0 0 400 260" preserveAspectRatio="none" aria-hidden="true">
+      <path class="cortina-marco-l" pathLength="1" d="M8 8 H392"/>
+      <path class="cortina-marco-l" pathLength="1" d="M392 8 V252"/>
+      <path class="cortina-marco-l" pathLength="1" d="M392 252 H8"/>
+      <path class="cortina-marco-l" pathLength="1" d="M8 252 V8"/>
+    </svg>
+    <div class="cortina-centro">
+      <p class="cortina-tomo">Asesor&iacute;a</p>
+      <p class="cortina-marca"><span>Cervantes</span></p>
+      <span class="cortina-filete" aria-hidden="true"></span>
+      <p class="cortina-pie">Carballo</p>
+    </div>
+  </div>
+</div>
+<script>setTimeout(function(){var c=document.querySelector('[data-cortina]');if(c&&!c.hidden){c.hidden=true;document.documentElement.classList.remove('cortina-puesta');}},6000);</script>
 
 <header class="cabecera">
   <a class="marca" href="#inicio" aria-label="Asesoría Cervantes, inicio">
