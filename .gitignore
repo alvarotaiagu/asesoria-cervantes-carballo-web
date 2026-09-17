@@ -1,0 +1,24 @@
+# intermedios pesados de la búsqueda y el proceso de fotos
+scripts/thumbs/
+scripts/photos_src/
+scripts/contact_sheets/
+scripts/photos_found.json
+scripts/server.log
+
+# volcados de la web actual (solo sirvieron para extraer los datos)
+scripts/src-*.html
+
+# imágenes de trabajo del trazado (se regeneran con los scripts)
+scripts/raster-*.png
+scripts/tune-*.svg
+scripts/tune-*.txt
+scripts/view-*.png
+scripts/skeleton-overlay.png
+scripts/tramos.png
+scripts/trazos.png
+scripts/pen-words*.png
+scripts/numerals.png
+scripts/grade-check.jpg
+scripts/wm-*.png
+scripts/skeleton.npy
+scripts/tramos.json

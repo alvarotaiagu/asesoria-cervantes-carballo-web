@@ -1,0 +1,387 @@
+{
+ "fecha": "2026-09-17T12:26:46.395Z",
+ "base": "http://127.0.0.1:8971/",
+ "total": 43,
+ "fallos": 0,
+ "pruebas": [
+  {
+   "prueba": "wordmark: paths de trazo presentes",
+   "ok": true,
+   "detalle": 15
+  },
+  {
+   "prueba": "wordmark: todos con pathLength=\"1\"",
+   "ok": true,
+   "detalle": {
+    "n": 15,
+    "conPathLength": 15,
+    "vb": "0 0 1000 282.05",
+    "par": null
+   }
+  },
+  {
+   "prueba": "wordmark: viewBox sin estirar (preserveAspectRatio por defecto)",
+   "ok": true,
+   "detalle": null
+  },
+  {
+   "prueba": "wordmark: se está escribiendo (unos trazos hechos, otros no)",
+   "ok": true,
+   "detalle": {
+    "empezados": 6,
+    "sinEmpezar": 9,
+    "tinta": 0
+   }
+  },
+  {
+   "prueba": "wordmark: al terminar se rellena y la pluma se retira",
+   "ok": true,
+   "detalle": {
+    "tinta": 1,
+    "trazo": 0
+   }
+  },
+  {
+   "prueba": "cookies: el botón cierra de verdad (display none, no solo [hidden])",
+   "ok": true,
+   "detalle": {
+    "hidden": true,
+    "display": "none"
+   }
+  },
+  {
+   "prueba": "titulares: cada uno tiene su trazo de pluma",
+   "ok": true,
+   "detalle": "Prologo:14 Cuatro:12 Acceso:10 Noticias:16 Resenas:13 Contacto:11"
+  },
+  {
+   "prueba": "titulares: al asentarse queda la tipografía serif y ningún carácter oculto",
+   "ok": true,
+   "detalle": [
+    {
+     "pluma": "Prologo",
+     "serif": 1,
+     "trazos": 14,
+     "charsOcultos": 0
+    },
+    {
+     "pluma": "Cuatro",
+     "serif": 1,
+     "trazos": 12,
+     "charsOcultos": 0
+    },
+    {
+     "pluma": "Acceso",
+     "serif": 1,
+     "trazos": 10,
+     "charsOcultos": 0
+    },
+    {
+     "pluma": "Noticias",
+     "serif": 1,
+     "trazos": 16,
+     "charsOcultos": 0
+    },
+    {
+     "pluma": "Resenas",
+     "serif": 1,
+     "trazos": 13,
+     "charsOcultos": 0
+    },
+    {
+     "pluma": "Contacto",
+     "serif": 1,
+     "trazos": 11,
+     "charsOcultos": 0
+    }
+   ]
+  },
+  {
+   "prueba": "capítulos: los cuatro numerales están dibujados",
+   "ok": true,
+   "detalle": [
+    {
+     "paths": 3,
+     "off": 0,
+     "op": 1
+    },
+    {
+     "paths": 6,
+     "off": 0,
+     "op": 1
+    },
+    {
+     "paths": 9,
+     "off": 0,
+     "op": 1
+    },
+    {
+     "paths": 7,
+     "off": 0,
+     "op": 1
+    }
+   ]
+  },
+  {
+   "prueba": "capítulos: todas las tarjetas miden lo mismo (si no, asoman por debajo)",
+   "ok": true,
+   "detalle": [
+    444,
+    444,
+    444,
+    444
+   ]
+  },
+  {
+   "prueba": "noticias: cuatro tarjetas de respaldo",
+   "ok": true,
+   "detalle": {
+    "cols": 4,
+    "n": 4
+   }
+  },
+  {
+   "prueba": "noticias: las cuatro en una fila en escritorio",
+   "ok": true,
+   "detalle": {
+    "cols": 4,
+    "n": 4
+   }
+  },
+  {
+   "prueba": "sin canvas (nada de blur/shadow por frame)",
+   "ok": true,
+   "detalle": 0
+  },
+  {
+   "prueba": "sin errores de consola",
+   "ok": true,
+   "detalle": []
+  },
+  {
+   "prueba": "pila: nunca hay dos tarjetas clavadas a la vez en el mismo sitio",
+   "ok": true,
+   "detalle": {
+    "muestras": 52,
+    "solapes": 0
+   }
+  },
+  {
+   "prueba": "pila: ninguna tarjeta de atrás asoma por debajo",
+   "ok": true,
+   "detalle": {
+    "muestras": 52,
+    "asoman": 0
+   }
+  },
+  {
+   "prueba": "noticias: la hoja sustituye al respaldo, acepta claves en mayúsculas y respeta «oculto»",
+   "ok": true,
+   "detalle": [
+    "Desde la hoja 1",
+    "Desde la hoja 2",
+    "Desde la hoja 3",
+    "Desde la hoja 4"
+   ]
+  },
+  {
+   "prueba": "noticias: si la hoja falla se quedan las cuatro de respaldo",
+   "ok": true,
+   "detalle": [
+    "Asesoría Cervantes está en Accountex España 2024",
+    "Finalización de la situación de crisis sanitaria COVID-19",
+    "Subvenciones para apoyar iniciativas de emprendimiento",
+    "Subvenciones al sector turístico"
+   ]
+  },
+  {
+   "prueba": "noticias: el fallo es silencioso (no se le enseña al visitante)",
+   "ok": true,
+   "detalle": null
+  },
+  {
+   "prueba": "mapa: no se carga ningún iframe hasta el clic",
+   "ok": true,
+   "detalle": 0
+  },
+  {
+   "prueba": "mapa: tras el clic aparece el embed de Google sin API key",
+   "ok": true,
+   "detalle": "https://www.google.com/maps?q=Asesor%C3%ADa%20Cervantes%20SL%2C%20Gran%20V%C3%ADa%2023-25%2C%2015100%20Carballo%2C%20A%20Coru%C3%B1a&output=embed"
+  },
+  {
+   "prueba": "reduced-motion: no se activa la animación",
+   "ok": true,
+   "detalle": false
+  },
+  {
+   "prueba": "reduced-motion: el wordmark aparece ya escrito",
+   "ok": true,
+   "detalle": 1
+  },
+  {
+   "prueba": "reduced-motion: nada de pasar página (sin clip-path)",
+   "ok": true,
+   "detalle": "none"
+  },
+  {
+   "prueba": "reduced-motion: todo el contenido visible",
+   "ok": true,
+   "detalle": 0
+  },
+  {
+   "prueba": "reduced-motion: los contadores muestran su valor final",
+   "ok": true,
+   "detalle": "39"
+  },
+  {
+   "prueba": "sin JS: el wordmark sigue ahí, relleno",
+   "ok": true,
+   "detalle": "#22332B"
+  },
+  {
+   "prueba": "sin JS: se lee el contenido (horario, teléfono, servicios)",
+   "ok": true,
+   "detalle": 5037
+  },
+  {
+   "prueba": "sin CDN: el wordmark se ve relleno y no hay animación",
+   "ok": true,
+   "detalle": {
+    "hasMotion": false,
+    "tinta": 1,
+    "noticias": 4,
+    "contador": "39",
+    "estrellas": 10
+   }
+  },
+  {
+   "prueba": "sin CDN: las noticias y las estrellas siguen funcionando",
+   "ok": true,
+   "detalle": {
+    "hasMotion": false,
+    "tinta": 1,
+    "noticias": 4,
+    "contador": "39",
+    "estrellas": 10
+   }
+  },
+  {
+   "prueba": "responsive movil-400: sin scroll horizontal",
+   "ok": true,
+   "detalle": {
+    "scrollH": 400,
+    "clientH": 400,
+    "wm": 360,
+    "tinta": 1
+   }
+  },
+  {
+   "prueba": "responsive movil-400: el wordmark se escribe igual, escalado",
+   "ok": true,
+   "detalle": {
+    "scrollH": 400,
+    "clientH": 400,
+    "wm": 360,
+    "tinta": 1
+   }
+  },
+  {
+   "prueba": "responsive movil-400: los capítulos se apilan en una columna",
+   "ok": true,
+   "detalle": {
+    "apilados": true,
+    "unaColumna": true
+   }
+  },
+  {
+   "prueba": "responsive movil-390: sin scroll horizontal",
+   "ok": true,
+   "detalle": {
+    "scrollH": 390,
+    "clientH": 390,
+    "wm": 350,
+    "tinta": 1
+   }
+  },
+  {
+   "prueba": "responsive movil-390: el wordmark se escribe igual, escalado",
+   "ok": true,
+   "detalle": {
+    "scrollH": 390,
+    "clientH": 390,
+    "wm": 350,
+    "tinta": 1
+   }
+  },
+  {
+   "prueba": "responsive movil-390: los capítulos se apilan en una columna",
+   "ok": true,
+   "detalle": {
+    "apilados": true,
+    "unaColumna": true
+   }
+  },
+  {
+   "prueba": "responsive tablet-820: sin scroll horizontal",
+   "ok": true,
+   "detalle": {
+    "scrollH": 820,
+    "clientH": 820,
+    "wm": 704,
+    "tinta": 1
+   }
+  },
+  {
+   "prueba": "responsive tablet-820: el wordmark se escribe igual, escalado",
+   "ok": true,
+   "detalle": {
+    "scrollH": 820,
+    "clientH": 820,
+    "wm": 704,
+    "tinta": 1
+   }
+  },
+  {
+   "prueba": "responsive tablet-820: los capítulos se apilan en una columna",
+   "ok": true,
+   "detalle": {
+    "apilados": true,
+    "unaColumna": true
+   }
+  },
+  {
+   "prueba": "datos reales presentes en la página",
+   "ok": true,
+   "detalle": []
+  },
+  {
+   "prueba": "teléfono enlazado correctamente",
+   "ok": true,
+   "detalle": null
+  },
+  {
+   "prueba": "sin marcadores de plantilla sin sustituir",
+   "ok": true,
+   "detalle": null
+  },
+  {
+   "prueba": "los huecos sin dato están marcados a la vista",
+   "ok": true,
+   "detalle": [
+    "[FOTO DE EQUIPO PENDIENTE]",
+    "[NOMBRES Y CARGOS PENDIENTES]",
+    "[Nº DE PERSONAS PENDIENTE]",
+    "[TEXTO DE RESEÑA PENDIENTE]",
+    "[NOMBRE PENDIENTE]",
+    "[TEXTO DE RESEÑA PENDIENTE]",
+    "[NOMBRE PENDIENTE]",
+    "[TEXTO DE RESEÑA PENDIENTE]",
+    "[NOMBRE PENDIENTE]",
+    "[TEXTO DE RESEÑA PENDIENTE]",
+    "[NOMBRE PENDIENTE]",
+    "[ROL EN KIT DIGITAL PENDIENTE: agente digitalizador o beneficiario]"
+   ]
+  }
+ ]
+}
