@@ -4,6 +4,9 @@
    La web se escribe sola: el logotipo es una firma caligráfica y cada área de
    trabajo es un capítulo. Fondo papel, verde salvia como tinta de pluma,
    verde tinta oscuro para el texto y los bloques, arena SOLO en los numerales.
+   (Nota temporal: mientras dura el control de paleta de más abajo, el :root
+   lleva el rojo de Dourado & Fernández en vez del verde salvia real — ver esa
+   sección para el porqué y para recuperar este verde con un clic.)
 
    Los estados «ocultos» de la animación viven todos bajo html.has-motion, que
    solo añade main.js cuando GSAP ha cargado y el visitante no ha pedido menos
@@ -15,13 +18,13 @@
   --papel:      #F4F0E8;
   --papel-2:    #EFEADF;
   --papel-3:    #E7E0D1;
-  --salvia:     #8CAA88;
-  --salvia-osc: #6E8C6B;
-  --oliva:      #93A86D;
+  --salvia:     #D68A8D;
+  --salvia-osc: #7A1418;
+  --oliva:      #9C2A2E;
   --tinta:      #22332B;
   --tinta-80:   #3B4E44;
   --tinta-60:   #64766B;
-  --arena:      #E8B469;
+  --arena:      #C4585C;
 
   --serif: "Newsreader", "Iowan Old Style", Georgia, "Times New Roman", serif;
   --sans:  "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
@@ -35,11 +38,28 @@
 /* -------------------------- Control de paleta --------------------------
    BLOQUE DE DEMOSTRACIÓN: se borra entero al entregar la web ya como
    oficial (ver README, "El control de paleta"). Solo cambia el color de
-   marca — el papel y la tinta son los mismos en las tres, y el logo real
-   no cambia de color con el mando. Salvia (la paleta real, sin clase) se
-   sustituye por Añil (azul, registro financiero) o Sepia (tinta cálida,
-   coherente con el concepto «Pluma»). Contrastes WCAG comprobados contra
-   --papel y --tinta antes de fijar los tonos. */
+   marca — el papel y la tinta son los mismos en las cuatro, y el logo real
+   no cambia de color con el mando.
+
+   El :root (sin clase) YA NO es el verde salvia real: de momento lleva el
+   rojo de Dourado & Fernández (dourado-fernandez-asesores-carballo-web),
+   para que este sitio y sus 6 hermanos lleguen a un mismo cliente por
+   correo ya en SU color y la comparación sea solo de estructura, no de
+   color. --salvia/--arena son un aclarado (tint) de su --oro-claro (mismo
+   matiz e intensidad, más claro) porque un rojo necesita mucha más luz que
+   un verde para el mismo contraste — usado en texto claro sobre --tinta
+   oscura y como fondo de botón bajo texto oscuro (ver .pie h4 y
+   .btn-pluma); --salvia-osc es su --oro-tinta tal cual (~10:1 sobre
+   --papel, como en la web de Dourado); --oliva es su --oro tal cual.
+
+   El verde salvia real (la paleta oficial del sitio) sigue existiendo,
+   ahora como html.paleta-original, elegible con el mando igual que Añil o
+   Sepia. Añil (azul, registro financiero) y Sepia (tinta cálida, coherente
+   con el concepto «Pluma») no se han tocado. Contrastes WCAG comprobados
+   contra --papel y --tinta antes de fijar cada tono. */
+html.paleta-original {
+  --salvia: #8CAA88; --salvia-osc: #6E8C6B; --oliva: #93A86D; --arena: #E8B469;
+}
 html.paleta-anil {
   --salvia: #909FC1; --salvia-osc: #3E4F7E; --oliva: #6194AE; --arena: #E4A758;
 }

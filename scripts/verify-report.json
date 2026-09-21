@@ -1,7 +1,7 @@
 {
- "fecha": "2026-09-21T12:37:51.844Z",
- "base": "http://127.0.0.1:8971/",
- "total": 50,
+ "fecha": "2026-09-21T13:29:32.512Z",
+ "base": "http://127.0.0.1:8973/",
+ "total": 52,
  "fallos": 2,
  "pruebas": [
   {
@@ -28,8 +28,8 @@
    "prueba": "wordmark: se está escribiendo (unos trazos hechos, otros no)",
    "ok": true,
    "detalle": {
-    "empezados": 10,
-    "sinEmpezar": 5,
+    "empezados": 11,
+    "sinEmpezar": 4,
     "tinta": 0
    }
   },
@@ -60,15 +60,15 @@
    "detalle": [
     {
      "pluma": "Prologo",
-     "serif": 0,
+     "serif": 1,
      "trazos": 14,
-     "charsOcultos": 23
+     "charsOcultos": 0
     },
     {
      "pluma": "Cuatro",
-     "serif": 0,
+     "serif": 1,
      "trazos": 12,
-     "charsOcultos": 24
+     "charsOcultos": 0
     },
     {
      "pluma": "Acceso",
@@ -102,18 +102,18 @@
    "detalle": [
     {
      "paths": 3,
-     "off": 1,
-     "op": 0
+     "off": 0,
+     "op": 1
     },
     {
      "paths": 6,
-     "off": 1,
-     "op": 0
+     "off": 0,
+     "op": 1
     },
     {
      "paths": 9,
-     "off": 1,
-     "op": 0
+     "off": 0,
+     "op": 1
     },
     {
      "paths": 7,
@@ -273,7 +273,7 @@
     "scrollH": 400,
     "clientH": 400,
     "wm": 360,
-    "tinta": 0.998
+    "tinta": 1
    }
   },
   {
@@ -283,7 +283,7 @@
     "scrollH": 400,
     "clientH": 400,
     "wm": 360,
-    "tinta": 0.998
+    "tinta": 1
    }
   },
   {
@@ -301,7 +301,7 @@
     "scrollH": 390,
     "clientH": 390,
     "wm": 350,
-    "tinta": 0.9938
+    "tinta": 1
    }
   },
   {
@@ -311,7 +311,7 @@
     "scrollH": 390,
     "clientH": 390,
     "wm": 350,
-    "tinta": 0.9938
+    "tinta": 1
    }
   },
   {
@@ -329,7 +329,7 @@
     "scrollH": 820,
     "clientH": 820,
     "wm": 704,
-    "tinta": 0.9989
+    "tinta": 1
    }
   },
   {
@@ -339,7 +339,7 @@
     "scrollH": 820,
     "clientH": 820,
     "wm": 704,
-    "tinta": 0.9989
+    "tinta": 1
    }
   },
   {
@@ -396,12 +396,24 @@
    ]
   },
   {
-   "prueba": "paleta: el mando aparece con JS y «Salvia» empieza pulsado",
+   "prueba": "paleta: el mando aparece con JS y «Rojo» (Dourado & Fernández, por defecto) empieza pulsado",
    "ok": true,
    "detalle": {
     "visible": true,
     "pulsado": "true",
-    "clase": "has-motion lenis"
+    "clase": "has-motion lenis",
+    "colorBtn": "rgb(214, 138, 141)"
+   }
+  },
+  {
+   "prueba": "paleta: Original recupera el verde salvia real del sitio",
+   "ok": true,
+   "detalle": {
+    "clase": true,
+    "pulsadoOriginal": "true",
+    "pulsadoRojo": "false",
+    "color": "rgb(140, 170, 136)",
+    "guardado": "original"
    }
   },
   {
@@ -409,8 +421,8 @@
    "ok": true,
    "detalle": {
     "clase": true,
+    "sinOriginal": true,
     "pulsadoAnil": "true",
-    "pulsadoSalvia": "false",
     "color": "rgb(144, 159, 193)",
     "guardado": "anil"
    }
@@ -429,6 +441,14 @@
    "prueba": "paleta: la paleta guardada se aplica sin fogonazo (ya en domcontentloaded)",
    "ok": true,
    "detalle": true
+  },
+  {
+   "prueba": "paleta: Rojo quita cualquier clase de paleta (vuelve al :root)",
+   "ok": true,
+   "detalle": {
+    "clase": "has-motion cortina-puesta lenis",
+    "guardado": "rojo"
+   }
   },
   {
    "prueba": "paleta: sin errores de consola",

@@ -247,35 +247,62 @@ bloque es un marco marcado como pendiente. Se regeneran con
 
 Un cliente de otra asesoría (Dourado & Fernández) vio la maqueta de su propia web en
 una reunión y no le convenció el verde. Desde entonces, todas las plantillas del
-sector asesoría/gestoría llevan un mando para enseñar la misma web en tres colores
+sector asesoría/gestoría llevan un mando para enseñar la misma web en varios colores
 distintos delante del cliente, sin tener que reeditar el CSS a cada rato. **Esto no es
 parte del sitio**: es una herramienta de venta mientras se decide la marca, y se
 retira al entregar la web ya como oficial.
 
-Las tres paletas (solo cambia el color de marca; el papel y la tinta son iguales
-en las tres):
+**Actualización (2026-09-21):** este sitio (y sus 6 hermanos de asesoría/gestoría) se
+envían por correo a Dourado & Fernández, un cliente real, para que elija qué
+ESTRUCTURA/CONCEPTO de plantilla prefiere. Dourado & Fernández ya tiene su propia web
+construida en su rojo de marca real. Para que el color deje de ser una variable en esa
+comparación — y el cliente compare solo estructura, viendo cada plantilla ya en «su»
+color — el rojo real de Dourado & Fernández pasó a ser la paleta **por defecto** (el
+`:root`, sin clase) en los 7 sitios. El verde salvia real de este sitio no ha
+desaparecido: sigue siendo una opción del mando, ahora con el nombre **Original**.
+
+Las cuatro paletas (solo cambia el color de marca; el papel y la tinta son iguales
+en las cuatro):
 
 | Paleta | `--salvia` | `--salvia-osc` | `--oliva` | `--arena` | Por qué |
 |---|---|---|---|---|---|
-| **Salvia** (la real, sin clase) | `#8CAA88` | `#6E8C6B` | `#93A86D` | `#E8B469` | El verde salvia + arena actual del sitio |
+| **Rojo** (por defecto, sin clase) | `#D68A8D` | `#7A1418` | `#9C2A2E` | `#C4585C` | Rojo real de Dourado & Fernández (`dourado-fernandez-asesores-carballo-web`), para el correo comparativo |
+| **Original** | `#8CAA88` | `#6E8C6B` | `#93A86D` | `#E8B469` | El verde salvia + arena real de este sitio (era la paleta por defecto hasta el 2026-09-21) |
 | **Añil** | `#909FC1` | `#3E4F7E` | `#6194AE` | `#E4A758` | Azul de registro contable/financiero |
 | **Sepia** | `#C78D70` | `#79412A` | `#C9664A` | `#E2A350` | Tinta cálida, coherente con el concepto «Pluma» |
 
-Los tres tonos de marca se comprobaron con la fórmula de contraste WCAG (luminancia
-relativa sRGB) contra `--papel` y `--tinta`, en los sitios donde se usan como texto
-(no en los puramente decorativos, como el trazo del SVG o la máscara del separador):
-ambas paletas nuevas igualan o mejoran los contrastes de la paleta real (`--salvia-osc`
-sobre `--papel` pasa de 3.28:1 a 6.6–7.1:1; `--salvia` sobre `--tinta`, de 5.21:1 a
-4.7–5.0:1).
+El rojo de Dourado & Fernández no se copió literal en las cuatro variables: su propia
+web usa `--oro` (#9C2A2E, el acento principal) y `--oro-tinta` (#7A1418, la variante
+oscura para texto, ~10:1 sobre blanco/crema por su propia documentación) tal cual, para
+`--oliva` y `--salvia-osc`. Pero `--salvia` hace doble papel en este sitio — es fondo
+de botón bajo texto oscuro (`.btn-pluma`) Y es texto claro sobre `--tinta` oscura
+(`.pie h4`, `.pie-pendiente` en el pie de página) — y un rojo necesita mucha más luz
+que un verde para el mismo contraste (el canal verde pesa 0.7152 en la luminancia WCAG,
+el rojo solo 0.2126). Por eso `--salvia` y `--arena` son un aclarado (mismo matiz y
+saturación, 358°/48%, más claro) de `--oro-claro` (#C4585C) de Dourado, no el tono
+literal: `--arena` se quedó en el propio `#C4585C` (uso decorativo/gráfico, umbral
+WCAG 3:1) y `--salvia` se aclaró hasta `#D68A8D` para llegar a ≥4.5:1 en sus dos usos
+de texto.
 
-**Cómo se quita al entregar la web ya como oficial** (4 sitios):
+Los tonos de marca se comprobaron con la fórmula de contraste WCAG (luminancia
+relativa sRGB) contra `--papel` y `--tinta`, en los sitios donde se usan como texto
+(no en los puramente decorativos, como el trazo del SVG o la máscara del separador).
+La paleta Rojo iguala o mejora los contrastes de la paleta Original en esos mismos
+usos: `--salvia-osc` sobre `--papel` pasa de 3.28:1 (Original) a 9.52:1 (Rojo);
+`--salvia` sobre `--tinta` (texto del pie) pasa de 5.21:1 a 5.00:1, y sobre el texto
+oscuro del botón (`#14211B`) llega a 6.24:1.
+
+**Cómo se quita al entregar la web ya como oficial** (4 sitios, y decidir antes cuál
+de las cuatro paletas se queda como la real):
 
 1. `index.html`: borrar el `<script>` del `<head>` que lee `localStorage` (busca
    `cervantes-paleta`) y el bloque `<div class="paleta" id="paleta" hidden>…</div>`
    junto al aviso de cookies.
-2. `css/style.css`: borrar el bloque `html.paleta-anil { … } html.paleta-sepia { … }`
-   (justo debajo de `:root`) y el bloque «Control de paleta (demostración…)» (junto al
-   aviso de cookies).
+2. `css/style.css`: decidir qué paleta queda como `:root` (si es Original, devolver
+   los cuatro valores de `--salvia`/`--salvia-osc`/`--oliva`/`--arena` a los de la fila
+   «Original» de la tabla), borrar los bloques `html.paleta-original { … }`,
+   `html.paleta-anil { … }` y `html.paleta-sepia { … }` (justo debajo de `:root`) y el
+   bloque «Control de paleta (demostración…)» (junto al aviso de cookies).
 3. `js/main.js`: borrar la función `initPaleta()` completa. Si no se usa en ningún otro
    sitio, también se puede quitar `actualizarAlturaCookie()` / `--cookie-h` de
    `avisoCookies()`, aunque no hace daño dejarlo.

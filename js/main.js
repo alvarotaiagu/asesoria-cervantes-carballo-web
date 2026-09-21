@@ -75,34 +75,39 @@
   })();
 
   /* ---------------- El control de paleta ----------------
-     NO ES PARTE DEL SITIO. Es un mando para enseñar la misma web en tres
-     paletas de color delante del cliente mientras decide. Al entregar la
-     web ya como oficial se borra esta función, el bloque .paleta del CSS,
-     el <div id="paleta"> y la bandera del <head>. */
+     NO ES PARTE DEL SITIO. Es un mando para enseñar la misma web en cuatro
+     paletas de color delante del cliente mientras decide. "Rojo" (sin
+     clase, el :root) es el rojo real de Dourado & Fernández y es la
+     paleta por defecto mientras este sitio se compara con sus 6 hermanos
+     por correo; "Original" es el verde salvia real de este sitio. Al
+     entregar la web ya como oficial se borra esta función, el bloque
+     .paleta del CSS, el <div id="paleta"> y la bandera del <head>. */
   (function initPaleta() {
     var caja = $("#paleta");
     var botones = {
-      salvia: $("#paleta-salvia"),
+      rojo: $("#paleta-rojo"),
+      original: $("#paleta-original"),
       anil: $("#paleta-anil"),
       sepia: $("#paleta-sepia")
     };
-    if (!caja || !botones.salvia || !botones.anil || !botones.sepia) return;
+    if (!caja || !botones.rojo || !botones.original || !botones.anil || !botones.sepia) return;
     var CLAVE_PALETA = "cervantes-paleta";
 
     caja.hidden = false; // sin JS no se enseña: no haría nada
 
     function pintar(nombre, guardar) {
-      html.classList.remove("paleta-anil", "paleta-sepia");
-      if (nombre !== "salvia") html.classList.add("paleta-" + nombre);
+      html.classList.remove("paleta-original", "paleta-anil", "paleta-sepia");
+      if (nombre !== "rojo") html.classList.add("paleta-" + nombre);
       Object.keys(botones).forEach(function (k) {
         botones[k].setAttribute("aria-pressed", String(k === nombre));
       });
       if (guardar) { try { localStorage.setItem(CLAVE_PALETA, nombre); } catch (e) {} }
     }
 
-    var actual = html.classList.contains("paleta-anil") ? "anil" : html.classList.contains("paleta-sepia") ? "sepia" : "salvia";
+    var actual = html.classList.contains("paleta-original") ? "original" : html.classList.contains("paleta-anil") ? "anil" : html.classList.contains("paleta-sepia") ? "sepia" : "rojo";
     pintar(actual, false);
-    botones.salvia.addEventListener("click", function () { pintar("salvia", true); });
+    botones.rojo.addEventListener("click", function () { pintar("rojo", true); });
+    botones.original.addEventListener("click", function () { pintar("original", true); });
     botones.anil.addEventListener("click", function () { pintar("anil", true); });
     botones.sepia.addEventListener("click", function () { pintar("sepia", true); });
   })();
