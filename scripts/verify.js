@@ -411,6 +411,62 @@ async function recorrer(p, paso = 500, espera = 130) {
     await p.context().close();
   }
 
+  /* ==================================================================
+     10 · Control de paleta (demostración, ver README)
+     ================================================================== */
+  {
+    const p = await pagina(b);
+    await p.goto(BASE, { waitUntil: 'networkidle' });
+    await p.click('.cookie-ack');
+
+    const inicial = await p.evaluate(() => ({
+      visible: !document.querySelector('#paleta').hidden,
+      pulsado: document.querySelector('#paleta-salvia').getAttribute('aria-pressed'),
+      clase: document.documentElement.className
+    }));
+    ok('paleta: el mando aparece con JS y «Salvia» empieza pulsado',
+      inicial.visible && inicial.pulsado === 'true' && !/paleta-(anil|sepia)/.test(inicial.clase), inicial);
+
+    const colorSalvia = await p.evaluate(() => getComputedStyle(document.querySelector('.btn-pluma')).backgroundColor);
+    await p.click('#paleta-anil');
+    /* .btn-pluma tiene transition en background-color: hay que esperar a que
+       termine (280ms) o se lee un color a medio interpolar, ni el viejo ni
+       el nuevo */
+    await p.waitForTimeout(400);
+    const anil = await p.evaluate(() => ({
+      clase: document.documentElement.classList.contains('paleta-anil'),
+      pulsadoAnil: document.querySelector('#paleta-anil').getAttribute('aria-pressed'),
+      pulsadoSalvia: document.querySelector('#paleta-salvia').getAttribute('aria-pressed'),
+      color: getComputedStyle(document.querySelector('.btn-pluma')).backgroundColor,
+      guardado: localStorage.getItem('cervantes-paleta')
+    }));
+    ok('paleta: Añil aplica la clase, mueve aria-pressed y cambia un color real',
+      anil.clase && anil.pulsadoAnil === 'true' && anil.pulsadoSalvia === 'false' &&
+      anil.color !== colorSalvia && anil.guardado === 'anil', anil);
+
+    await p.click('#paleta-sepia');
+    await p.waitForTimeout(400);
+    const sepia = await p.evaluate(() => ({
+      clase: document.documentElement.classList.contains('paleta-sepia'),
+      sinAnil: !document.documentElement.classList.contains('paleta-anil'),
+      color: getComputedStyle(document.querySelector('.btn-pluma')).backgroundColor,
+      guardado: localStorage.getItem('cervantes-paleta')
+    }));
+    ok('paleta: Sepia sustituye a Añil (una sola paleta activa) y cambia el color',
+      sepia.clase && sepia.sinAnil && sepia.color !== colorSalvia && sepia.color !== anil.color &&
+      sepia.guardado === 'sepia', sepia);
+    await p.screenshot({ path: path.join(CAPS, 'v-paleta-sepia.png') });
+
+    /* recarga: la clase debe estar puesta YA en domcontentloaded, antes de que
+       main.js llegue a ejecutarse, o habría un fogonazo de salvia a sepia */
+    await p.reload({ waitUntil: 'domcontentloaded' });
+    const sinFlash = await p.evaluate(() => document.documentElement.classList.contains('paleta-sepia'));
+    ok('paleta: la paleta guardada se aplica sin fogonazo (ya en domcontentloaded)', sinFlash, sinFlash);
+
+    ok('paleta: sin errores de consola', p.__errores.length === 0, p.__errores);
+    await p.context().close();
+  }
+
   await b.close();
 
   const fallos = res.filter(r => !r.ok);

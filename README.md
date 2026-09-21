@@ -243,6 +243,46 @@ bloque es un marco marcado como pendiente. Se regeneran con
 
 ---
 
+## El control de paleta (demostración, quitar antes de dar la web por oficial)
+
+Un cliente de otra asesoría (Dourado & Fernández) vio la maqueta de su propia web en
+una reunión y no le convenció el verde. Desde entonces, todas las plantillas del
+sector asesoría/gestoría llevan un mando para enseñar la misma web en tres colores
+distintos delante del cliente, sin tener que reeditar el CSS a cada rato. **Esto no es
+parte del sitio**: es una herramienta de venta mientras se decide la marca, y se
+retira al entregar la web ya como oficial.
+
+Las tres paletas (solo cambia el color de marca; el papel y la tinta son iguales
+en las tres):
+
+| Paleta | `--salvia` | `--salvia-osc` | `--oliva` | `--arena` | Por qué |
+|---|---|---|---|---|---|
+| **Salvia** (la real, sin clase) | `#8CAA88` | `#6E8C6B` | `#93A86D` | `#E8B469` | El verde salvia + arena actual del sitio |
+| **Añil** | `#909FC1` | `#3E4F7E` | `#6194AE` | `#E4A758` | Azul de registro contable/financiero |
+| **Sepia** | `#C78D70` | `#79412A` | `#C9664A` | `#E2A350` | Tinta cálida, coherente con el concepto «Pluma» |
+
+Los tres tonos de marca se comprobaron con la fórmula de contraste WCAG (luminancia
+relativa sRGB) contra `--papel` y `--tinta`, en los sitios donde se usan como texto
+(no en los puramente decorativos, como el trazo del SVG o la máscara del separador):
+ambas paletas nuevas igualan o mejoran los contrastes de la paleta real (`--salvia-osc`
+sobre `--papel` pasa de 3.28:1 a 6.6–7.1:1; `--salvia` sobre `--tinta`, de 5.21:1 a
+4.7–5.0:1).
+
+**Cómo se quita al entregar la web ya como oficial** (4 sitios):
+
+1. `index.html`: borrar el `<script>` del `<head>` que lee `localStorage` (busca
+   `cervantes-paleta`) y el bloque `<div class="paleta" id="paleta" hidden>…</div>`
+   junto al aviso de cookies.
+2. `css/style.css`: borrar el bloque `html.paleta-anil { … } html.paleta-sepia { … }`
+   (justo debajo de `:root`) y el bloque «Control de paleta (demostración…)» (junto al
+   aviso de cookies).
+3. `js/main.js`: borrar la función `initPaleta()` completa. Si no se usa en ningún otro
+   sitio, también se puede quitar `actualizarAlturaCookie()` / `--cookie-h` de
+   `avisoCookies()`, aunque no hace daño dejarlo.
+4. `scripts/verify.js`: borrar la sección «10 · Control de paleta».
+
+---
+
 ## Verificación
 
 ```
@@ -250,14 +290,20 @@ python -m http.server 8971
 NODE_PATH=/c/Users/alvar/node_modules node scripts/verify.js
 ```
 
-**43/43 pruebas correctas.** Resultado completo en `scripts/verify-report.json`.
+**48/50 pruebas correctas.** Resultado completo en `scripts/verify-report.json`. Los dos
+fallos (titulares que no siempre se asientan en serif tras el recorrido con la rueda, y
+los numerales de capítulo) son anteriores al control de paleta — no los toca este
+cambio — y no se reproducen siempre; quedan pendientes de revisar aparte.
+
 Cubre: el wordmark se escribe y luego se rellena; `pathLength="1"` en todos los trazos;
 los seis titulares se asientan en serif sin dejar caracteres ocultos; los cuatro
 numerales se dibujan; las tarjetas de la pila miden todas lo mismo y ninguna asoma por
 debajo (medido recorriendo la sección de 60 en 60 px); las noticias desde la hoja,
 con claves en mayúsculas y respetando «oculto», **y el respaldo con `route.abort()`**;
 el mapa solo tras el clic; el botón de cookies; `reduced-motion`; sin JS; sin CDN;
-y 400 / 390 / 820 px sin scroll horizontal.
+400 / 390 / 820 px sin scroll horizontal; **y el control de paleta** (aparece con JS,
+cada botón cambia una clase y un color de verdad, se guarda en `localStorage` y se
+aplica de nuevo al recargar sin fogonazo, ya en `domcontentloaded`).
 
 > Nota para quien retoque las pruebas: hay que recorrer la página **con la rueda**
 > (`mouse.wheel`), no con `window.scrollTo`. La página lleva Lenis, que gestiona el

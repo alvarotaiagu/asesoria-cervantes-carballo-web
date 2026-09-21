@@ -32,6 +32,21 @@
   --gutter: clamp(1.25rem, 4vw, 3.5rem);
 }
 
+/* -------------------------- Control de paleta --------------------------
+   BLOQUE DE DEMOSTRACIÓN: se borra entero al entregar la web ya como
+   oficial (ver README, "El control de paleta"). Solo cambia el color de
+   marca — el papel y la tinta son los mismos en las tres, y el logo real
+   no cambia de color con el mando. Salvia (la paleta real, sin clase) se
+   sustituye por Añil (azul, registro financiero) o Sepia (tinta cálida,
+   coherente con el concepto «Pluma»). Contrastes WCAG comprobados contra
+   --papel y --tinta antes de fijar los tonos. */
+html.paleta-anil {
+  --salvia: #909FC1; --salvia-osc: #3E4F7E; --oliva: #6194AE; --arena: #E4A758;
+}
+html.paleta-sepia {
+  --salvia: #C78D70; --salvia-osc: #79412A; --oliva: #C9664A; --arena: #E2A350;
+}
+
 *, *::before, *::after { box-sizing: border-box; }
 
 html {
@@ -635,6 +650,37 @@ html.has-motion .cap-num path { stroke-dasharray: 1 1.04; stroke-dashoffset: 1; 
 .cookie-banner[hidden] { display: none; }
 .cookie-banner p { margin: 0; flex: 1 1 16rem; }
 .cookie-ack { flex: none; padding: 0.6rem 1.3rem; }
+
+/* ---------- Control de paleta (demostración, ver nota arriba en :root) ----------
+   Esta web no tenía ya un botón flotante (WhatsApp, etc.) con el que compartir
+   convención de "no tapar el aviso de cookies", así que main.js calcula
+   --cookie-h (alto del aviso + margen) mientras esté visible y aquí solo se
+   suma al bottom. */
+.paleta { display: none; }
+.paleta:not([hidden]) {
+  display: flex; position: fixed; z-index: 130; left: 1.2rem; bottom: calc(1.2rem + var(--cookie-h, 0px));
+  align-items: center; gap: 0.6rem; background: var(--papel); border: 1px solid rgba(34, 51, 43, 0.18);
+  border-radius: 999px; padding: 0.4rem 0.5rem 0.4rem 0.9rem;
+  box-shadow: 0 16px 32px -18px rgba(34, 51, 43, 0.45);
+  transition: bottom 0.3s ease;
+}
+.paleta-rotulo {
+  margin: 0; font-family: var(--sans); font-size: 0.62rem; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--tinta-60);
+}
+.paleta-botones { display: flex; gap: 0.3rem; }
+.paleta-botones button {
+  font-family: var(--sans); font-size: 0.68rem; letter-spacing: 0.04em; cursor: pointer;
+  background: transparent; color: var(--tinta-60);
+  border: 1px solid rgba(34, 51, 43, 0.18); border-radius: 999px; padding: 0.34rem 0.75rem;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+}
+.paleta-botones button:hover { color: var(--tinta); border-color: rgba(34, 51, 43, 0.32); }
+.paleta-botones button[aria-pressed="true"] { background: var(--salvia-osc); color: var(--papel); border-color: var(--salvia-osc); }
+@media (max-width: 480px) {
+  .paleta:not([hidden]) { left: 0.9rem; bottom: calc(0.9rem + var(--cookie-h, 0px)); padding: 0.3rem 0.4rem 0.3rem 0.7rem; }
+  .paleta-rotulo { display: none; }
+}
 
 /* ---------- Estados de entrada (solo con movimiento) ----------------------- */
 html.has-motion [data-reveal] { opacity: 0; transform: translateY(1.4rem); }

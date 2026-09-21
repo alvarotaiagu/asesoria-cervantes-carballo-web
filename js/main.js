@@ -55,10 +55,56 @@
     var visto = false;
     try { visto = localStorage.getItem(CLAVE) === "1"; } catch (e) {}
     if (!visto) banner.hidden = false;
+
+    /* --cookie-h: alto real del aviso + margen, para que el mando de paleta
+       (más abajo) no quede tapado por él mientras está abierto. Este sitio
+       no tenía ya una convención de este tipo (no hay botón de WhatsApp ni
+       similar), así que se calcula aquí. */
+    function actualizarAlturaCookie() {
+      var h = !banner.hidden ? banner.offsetHeight + 16 : 0;
+      html.style.setProperty("--cookie-h", h + "px");
+    }
+    actualizarAlturaCookie();
+    window.addEventListener("resize", actualizarAlturaCookie);
+
     ok.addEventListener("click", function () {
       banner.hidden = true;
       try { localStorage.setItem(CLAVE, "1"); } catch (e) {}
+      actualizarAlturaCookie();
     });
+  })();
+
+  /* ---------------- El control de paleta ----------------
+     NO ES PARTE DEL SITIO. Es un mando para enseñar la misma web en tres
+     paletas de color delante del cliente mientras decide. Al entregar la
+     web ya como oficial se borra esta función, el bloque .paleta del CSS,
+     el <div id="paleta"> y la bandera del <head>. */
+  (function initPaleta() {
+    var caja = $("#paleta");
+    var botones = {
+      salvia: $("#paleta-salvia"),
+      anil: $("#paleta-anil"),
+      sepia: $("#paleta-sepia")
+    };
+    if (!caja || !botones.salvia || !botones.anil || !botones.sepia) return;
+    var CLAVE_PALETA = "cervantes-paleta";
+
+    caja.hidden = false; // sin JS no se enseña: no haría nada
+
+    function pintar(nombre, guardar) {
+      html.classList.remove("paleta-anil", "paleta-sepia");
+      if (nombre !== "salvia") html.classList.add("paleta-" + nombre);
+      Object.keys(botones).forEach(function (k) {
+        botones[k].setAttribute("aria-pressed", String(k === nombre));
+      });
+      if (guardar) { try { localStorage.setItem(CLAVE_PALETA, nombre); } catch (e) {} }
+    }
+
+    var actual = html.classList.contains("paleta-anil") ? "anil" : html.classList.contains("paleta-sepia") ? "sepia" : "salvia";
+    pintar(actual, false);
+    botones.salvia.addEventListener("click", function () { pintar("salvia", true); });
+    botones.anil.addEventListener("click", function () { pintar("anil", true); });
+    botones.sepia.addEventListener("click", function () { pintar("sepia", true); });
   })();
 
   /* --- menú móvil -------------------------------------------------------- */

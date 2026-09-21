@@ -1,8 +1,8 @@
 {
- "fecha": "2026-09-17T21:44:56.184Z",
- "base": "http://127.0.0.1:8802/",
- "total": 45,
- "fallos": 0,
+ "fecha": "2026-09-21T12:37:51.844Z",
+ "base": "http://127.0.0.1:8971/",
+ "total": 50,
+ "fallos": 2,
  "pruebas": [
   {
    "prueba": "wordmark: paths de trazo presentes",
@@ -28,8 +28,8 @@
    "prueba": "wordmark: se está escribiendo (unos trazos hechos, otros no)",
    "ok": true,
    "detalle": {
-    "empezados": 11,
-    "sinEmpezar": 4,
+    "empezados": 10,
+    "sinEmpezar": 5,
     "tinta": 0
    }
   },
@@ -56,69 +56,69 @@
   },
   {
    "prueba": "titulares: al asentarse queda la tipografía serif y ningún carácter oculto",
-   "ok": true,
+   "ok": false,
    "detalle": [
     {
      "pluma": "Prologo",
-     "serif": 1,
+     "serif": 0,
      "trazos": 14,
-     "charsOcultos": 0
+     "charsOcultos": 23
     },
     {
      "pluma": "Cuatro",
-     "serif": 1,
+     "serif": 0,
      "trazos": 12,
-     "charsOcultos": 0
+     "charsOcultos": 24
     },
     {
      "pluma": "Acceso",
-     "serif": 1,
+     "serif": 0,
      "trazos": 10,
-     "charsOcultos": 0
+     "charsOcultos": 8
     },
     {
      "pluma": "Noticias",
-     "serif": 1,
+     "serif": 0,
      "trazos": 16,
-     "charsOcultos": 0
+     "charsOcultos": 11
     },
     {
      "pluma": "Resenas",
-     "serif": 1,
+     "serif": 0,
      "trazos": 13,
-     "charsOcultos": 0
+     "charsOcultos": 21
     },
     {
      "pluma": "Contacto",
-     "serif": 1,
+     "serif": 0,
      "trazos": 11,
-     "charsOcultos": 0
+     "charsOcultos": 8
     }
    ]
   },
   {
    "prueba": "capítulos: los cuatro numerales están dibujados",
-   "ok": true,
+   "ok": false,
    "detalle": [
     {
      "paths": 3,
-     "off": 0,
-     "op": 1
+     "off": 1,
+     "op": 0
     },
     {
      "paths": 6,
-     "off": 0,
-     "op": 1
+     "off": 1,
+     "op": 0
     },
     {
      "paths": 9,
-     "off": 0,
-     "op": 1
+     "off": 1,
+     "op": 0
     },
     {
      "paths": 7,
-     "off": 0,
-     "op": 1
+     "off": 1,
+     "op": 0
     }
    ]
   },
@@ -273,7 +273,7 @@
     "scrollH": 400,
     "clientH": 400,
     "wm": 360,
-    "tinta": 0.9868
+    "tinta": 0.998
    }
   },
   {
@@ -283,7 +283,7 @@
     "scrollH": 400,
     "clientH": 400,
     "wm": 360,
-    "tinta": 0.9868
+    "tinta": 0.998
    }
   },
   {
@@ -301,7 +301,7 @@
     "scrollH": 390,
     "clientH": 390,
     "wm": 350,
-    "tinta": 0.9819
+    "tinta": 0.9938
    }
   },
   {
@@ -311,7 +311,7 @@
     "scrollH": 390,
     "clientH": 390,
     "wm": 350,
-    "tinta": 0.9819
+    "tinta": 0.9938
    }
   },
   {
@@ -329,7 +329,7 @@
     "scrollH": 820,
     "clientH": 820,
     "wm": 704,
-    "tinta": 0.9816
+    "tinta": 0.9989
    }
   },
   {
@@ -339,7 +339,7 @@
     "scrollH": 820,
     "clientH": 820,
     "wm": 704,
-    "tinta": 0.9816
+    "tinta": 0.9989
    }
   },
   {
@@ -394,6 +394,46 @@
     "Ana G.",
     "Jesús Manuel R."
    ]
+  },
+  {
+   "prueba": "paleta: el mando aparece con JS y «Salvia» empieza pulsado",
+   "ok": true,
+   "detalle": {
+    "visible": true,
+    "pulsado": "true",
+    "clase": "has-motion lenis"
+   }
+  },
+  {
+   "prueba": "paleta: Añil aplica la clase, mueve aria-pressed y cambia un color real",
+   "ok": true,
+   "detalle": {
+    "clase": true,
+    "pulsadoAnil": "true",
+    "pulsadoSalvia": "false",
+    "color": "rgb(144, 159, 193)",
+    "guardado": "anil"
+   }
+  },
+  {
+   "prueba": "paleta: Sepia sustituye a Añil (una sola paleta activa) y cambia el color",
+   "ok": true,
+   "detalle": {
+    "clase": true,
+    "sinAnil": true,
+    "color": "rgb(199, 141, 112)",
+    "guardado": "sepia"
+   }
+  },
+  {
+   "prueba": "paleta: la paleta guardada se aplica sin fogonazo (ya en domcontentloaded)",
+   "ok": true,
+   "detalle": true
+  },
+  {
+   "prueba": "paleta: sin errores de consola",
+   "ok": true,
+   "detalle": []
   }
  ]
 }
