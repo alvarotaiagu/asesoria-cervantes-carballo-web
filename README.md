@@ -255,21 +255,22 @@ retira al entregar la web ya como oficial.
 **Actualización (2026-09-21):** este sitio (y sus 6 hermanos de asesoría/gestoría) se
 envían por correo a Dourado & Fernández, un cliente real, para que elija qué
 ESTRUCTURA/CONCEPTO de plantilla prefiere. Dourado & Fernández ya tiene su propia web
-construida en su rojo de marca real. Para que el color deje de ser una variable en esa
-comparación — y el cliente compare solo estructura, viendo cada plantilla ya en «su»
-color — el rojo real de Dourado & Fernández pasó a ser la paleta **por defecto** (el
-`:root`, sin clase) en los 7 sitios. El verde salvia real de este sitio no ha
-desaparecido: sigue siendo una opción del mando, ahora con el nombre **Original**.
+construida en su rojo de marca real, sobre papel blanco puro. Para que el color Y el
+fondo dejen de ser una variable en esa comparación — y el cliente compare solo
+estructura, viendo cada plantilla ya en «su» color y «su» papel — el rojo real de
+Dourado & Fernández y su blanco pasaron a ser la paleta **por defecto** (el `:root`,
+sin clase) en los 7 sitios. El verde salvia y el crema real de este sitio no han
+desaparecido: siguen siendo una opción del mando, ahora con el nombre **Original**.
 
-Las cuatro paletas (solo cambia el color de marca; el papel y la tinta son iguales
-en las cuatro):
+Las cuatro paletas (cambia el color de marca y, solo en Rojo, también el papel — la
+tinta es la misma en las cuatro):
 
-| Paleta | `--salvia` | `--salvia-osc` | `--oliva` | `--arena` | Por qué |
-|---|---|---|---|---|---|
-| **Rojo** (por defecto, sin clase) | `#D68A8D` | `#7A1418` | `#9C2A2E` | `#C4585C` | Rojo real de Dourado & Fernández (`dourado-fernandez-asesores-carballo-web`), para el correo comparativo |
-| **Original** | `#8CAA88` | `#6E8C6B` | `#93A86D` | `#E8B469` | El verde salvia + arena real de este sitio (era la paleta por defecto hasta el 2026-09-21) |
-| **Añil** | `#909FC1` | `#3E4F7E` | `#6194AE` | `#E4A758` | Azul de registro contable/financiero |
-| **Sepia** | `#C78D70` | `#79412A` | `#C9664A` | `#E2A350` | Tinta cálida, coherente con el concepto «Pluma» |
+| Paleta | `--salvia` | `--salvia-osc` | `--oliva` | `--arena` | `--papel` / `-2` / `-3` | Por qué |
+|---|---|---|---|---|---|---|
+| **Rojo** (por defecto, sin clase) | `#D68A8D` | `#7A1418` | `#9C2A2E` | `#C4585C` | `#FFFFFF` / `#F2F0EA` / `#EAE6DC` | Rojo Y papel blanco reales de Dourado & Fernández (`dourado-fernandez-asesores-carballo-web`: su `--crema`/`--crema-2` tal cual; `--papel-3` no tiene equivalente allí y sigue el mismo paso de gris cálido), para el correo comparativo |
+| **Original** | `#8CAA88` | `#6E8C6B` | `#93A86D` | `#E8B469` | `#F4F0E8` / `#EFEADF` / `#E7E0D1` | El verde salvia + arena + papel crema real de este sitio (era la paleta por defecto hasta el 2026-09-21) |
+| **Añil** | `#909FC1` | `#3E4F7E` | `#6194AE` | `#E4A758` | `#F4F0E8` / `#EFEADF` / `#E7E0D1` | Azul de registro contable/financiero (papel crema propio, no el blanco de Dourado) |
+| **Sepia** | `#C78D70` | `#79412A` | `#C9664A` | `#E2A350` | `#F4F0E8` / `#EFEADF` / `#E7E0D1` | Tinta cálida, coherente con el concepto «Pluma» (papel crema propio, no el blanco de Dourado) |
 
 El rojo de Dourado & Fernández no se copió literal en las cuatro variables: su propia
 web usa `--oro` (#9C2A2E, el acento principal) y `--oro-tinta` (#7A1418, la variante
@@ -288,9 +289,12 @@ Los tonos de marca se comprobaron con la fórmula de contraste WCAG (luminancia
 relativa sRGB) contra `--papel` y `--tinta`, en los sitios donde se usan como texto
 (no en los puramente decorativos, como el trazo del SVG o la máscara del separador).
 La paleta Rojo iguala o mejora los contrastes de la paleta Original en esos mismos
-usos: `--salvia-osc` sobre `--papel` pasa de 3.28:1 (Original) a 9.52:1 (Rojo);
-`--salvia` sobre `--tinta` (texto del pie) pasa de 5.21:1 a 5.00:1, y sobre el texto
-oscuro del botón (`#14211B`) llega a 6.24:1.
+usos: `--salvia-osc` sobre `--papel` pasa de 3.28:1 (Original, sobre el crema
+`#F4F0E8`) a 10.82:1 (Rojo, sobre el blanco `#FFFFFF` — mejora aún más que el 9.52:1
+que daba antes de que Rojo también llevara el papel blanco de Dourado); `--salvia`
+sobre `--tinta` (texto del pie) pasa de 5.21:1 a 5.00:1, y sobre el texto oscuro del
+botón (`#14211B`) llega a 6.24:1. `--tinta` sobre `--papel` (el texto de cuerpo)
+también mejora con el blanco: de 11.67:1 (Original, sobre crema) a 13.32:1 (Rojo).
 
 **Cómo se quita al entregar la web ya como oficial** (4 sitios, y decidir antes cuál
 de las cuatro paletas se queda como la real):
@@ -299,10 +303,12 @@ de las cuatro paletas se queda como la real):
    `cervantes-paleta`) y el bloque `<div class="paleta" id="paleta" hidden>…</div>`
    junto al aviso de cookies.
 2. `css/style.css`: decidir qué paleta queda como `:root` (si es Original, devolver
-   los cuatro valores de `--salvia`/`--salvia-osc`/`--oliva`/`--arena` a los de la fila
-   «Original» de la tabla), borrar los bloques `html.paleta-original { … }`,
-   `html.paleta-anil { … }` y `html.paleta-sepia { … }` (justo debajo de `:root`) y el
-   bloque «Control de paleta (demostración…)» (junto al aviso de cookies).
+   los siete valores de `--papel`/`--papel-2`/`--papel-3`/`--salvia`/`--salvia-osc`/
+   `--oliva`/`--arena` a los de la fila «Original» de la tabla — Rojo es la única que
+   también cambia el papel, no solo el color de marca), borrar los bloques
+   `html.paleta-original { … }`, `html.paleta-anil { … }` y `html.paleta-sepia { … }`
+   (justo debajo de `:root`) y el bloque «Control de paleta (demostración…)» (junto al
+   aviso de cookies).
 3. `js/main.js`: borrar la función `initPaleta()` completa. Si no se usa en ningún otro
    sitio, también se puede quitar `actualizarAlturaCookie()` / `--cookie-h` de
    `avisoCookies()`, aunque no hace daño dejarlo.
@@ -317,10 +323,11 @@ python -m http.server 8971
 NODE_PATH=/c/Users/alvar/node_modules node scripts/verify.js
 ```
 
-**48/50 pruebas correctas.** Resultado completo en `scripts/verify-report.json`. Los dos
+**50/52 pruebas correctas.** Resultado completo en `scripts/verify-report.json`. Los dos
 fallos (titulares que no siempre se asientan en serif tras el recorrido con la rueda, y
 los numerales de capítulo) son anteriores al control de paleta — no los toca este
-cambio — y no se reproducen siempre; quedan pendientes de revisar aparte.
+cambio, ni el papel blanco de Rojo del 2026-09-21 — y no se reproducen siempre; quedan
+pendientes de revisar aparte.
 
 Cubre: el wordmark se escribe y luego se rellena; `pathLength="1"` en todos los trazos;
 los seis titulares se asientan en serif sin dejar caracteres ocultos; los cuatro
